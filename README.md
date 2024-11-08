@@ -17,4 +17,7 @@ SignalR
 <br>
 *Update the appsettings.json with your database connection string if not using User Secrets. *Use User Secrets to store sensitive information like the connection string and JWT keys.
 <br><br>
-Usage User Registration: Register as a new user through the registration page. Login: Log in to receive a JWT, stored in cookies for secure authentication. Start Messaging: After login, navigate to the chat page, enter a recipient’s mail address, and start sending messages in real-time.
+Usage <br>
+User Registration: Register as a new user through the registration page. <br>
+Login: Log in to receive a JWT, stored in cookies for secure authentication. <br>
+Start Messaging: After login, navigate to the chat page, enter a recipient’s mail address, and start sending messages in real-time.
