@@ -1,0 +1,32 @@
+﻿@using MessagingApp.Services.DTOs
+@model UserLoginDTO
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>Login</h2>
+
+<form id="loginForm" asp-action="Login" method="post">
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" id="email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" id="password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+<div>
+    <a>Don't you have an account?</a>
+    <a asp-controller="Auth" asp-action="RegisterNewUser" class="btn btn-primary">
+        Register
+    </a>
+</div>
+
+<partial name="_ValidationScriptsPartial" />

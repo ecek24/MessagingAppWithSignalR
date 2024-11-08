@@ -1,0 +1,77 @@
+﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.7/signalr.min.js"></script>
+
+
+
+<div id="chatContainer" style="max-width: 600px; margin: auto;">
+
+    <div style="margin-bottom: 20px;">
+        <label for="receiverEmail">Receiver Email:</label>
+        <input type="email" id="receiverEmail" class="form-control" placeholder="Enter Receiver's email" required />
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="messageInput">Message:</label>
+        <textarea id="messageInput" class="form-control" placeholder="Type your message" rows="3" required></textarea>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <button id="sendMessageBtn" class="btn btn-primary">Send</button>
+    </div>
+
+    <div id="chatHistory" style="border: 1px solid #ccc; padding: 10px; max-height: 400px; overflow-y: auto;">
+        <a id="allMessages">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"></h5>
+                <h5 class="mb-2"></h5>
+            </div>
+            <p class="mb-1"></p>
+        </a>
+    </div>
+
+
+</div>
+
+<script>
+    $(document).ready(() => {
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .build();
+
+        connection.start()
+
+        connection.on("receiveMessage", (message, senderUserName) => {
+            console.log(message);
+            console.log(senderUserName);
+
+            const newMessage = $("#allMessages").clone().removeAttr('id');
+            newMessage.find("h5").eq(0).text(senderUserName);
+            newMessage.find("p").html(message);
+            $("#chatHistory").append(newMessage);
+        });
+
+        $("#sendMessageBtn").click(() => {
+            const receiverEmail = $("#receiverEmail").val();
+            const message = $("#messageInput").val();
+            
+            if (receiverEmail && message) {
+                connection.invoke("SendMessageAsync", receiverEmail, message)
+                    .then(() => {
+                        const newMessage = $("#allMessages").clone().removeAttr('id');
+                        newMessage.find("h5").eq(1).text("You");
+                        newMessage.find("p").html(message);
+                        $("#chatHistory").append(newMessage);
+
+                        $("#messageInput").val('');
+                    })
+                    .catch(err => {
+                        console.error("SendMessageAsync failed: ", err);
+                        alert("Failed to send message. Please try again.");
+                    });
+            } else {
+                alert("Please enter both recipient's email and message.");
+            }
+        });
+        });
+
+</script>

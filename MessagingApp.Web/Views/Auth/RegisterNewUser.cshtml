@@ -1,0 +1,32 @@
+﻿@using MessagingApp.Services.DTOs
+@model UserRegistrationDTO
+
+<h2>Register</h2>
+
+<form asp-action="RegisterNewUser" method="post">
+    <div>
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <button type="submit">Register</button>
+</form>
+
+<div>
+    <a>Do you have an account?</a>
+    <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">
+        Go to Login
+    </a>
+</div>
+
+<partial name="_ValidationScriptsPartial" />
