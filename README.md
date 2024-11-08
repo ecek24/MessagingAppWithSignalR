@@ -15,7 +15,8 @@ JWT Authentication <br>
 SignalR 
 <br>
 <br>
-*Update the appsettings.json with your database connection string if not using User Secrets. *Use User Secrets to store sensitive information like the connection string and JWT keys.
+*Update the appsettings.json with your database connection string if not using User Secrets. <br>
+*Use User Secrets to store sensitive information like the connection string and JWT keys.
 <br><br>
 Usage <br>
 User Registration: Register as a new user through the registration page. <br>
