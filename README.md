@@ -1,5 +1,6 @@
 # Real-Time Messaging App
-Features Real-Time Messaging: Real-time communication between users with SignalR. <br>
+Features<br>
+Real-Time Messaging: Real-time communication between users with SignalR. <br>
 JWT Authentication: Secure user authentication with JSON Web Tokens. <br>
 ASP.NET Core Identity: User management for registration, login, and authentication. <br>
 EF Core (Code-First): Database structure is managed with Entity Framework Core's code-first approach. <br>
